@@ -5,5 +5,13 @@
 
 
 {% block content %}
-
+<h1>Blog Posts</h1>
+<div>
+{% for post in page.get_children.live %}
+    <h2>
+        <a href="{% pageurl post.specific %}">{{ post }}</a>
+    </h2>
+    <p>{{ post.specific.description | richtext }}</p>
+{% endfor %}
+</div>
 {% endblock content %}

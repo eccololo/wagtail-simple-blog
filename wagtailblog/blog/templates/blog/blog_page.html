@@ -5,5 +5,22 @@
 
 
 {% block content %}
+<h1>
+    {{ page.title }}
+</h1>
+<h4>
+    {{ page.description | richtext }}
+</h4>
 
+<article>
+    {% for block in page.content %}
+        {% if block.block_type == 'heading' %}
+            <h1>{{ block.value }}</h1>
+        {% else %}
+            <section class="block-{{ block.block_type }}">
+                {% include_block block %}
+            </section>
+        {% endif %}
+    {% endfor %}
+</article>
 {% endblock content %}
